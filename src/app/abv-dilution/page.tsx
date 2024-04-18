@@ -36,7 +36,7 @@ const Home: React.FC = () => {
     };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-black">
+    <div className="flex justify-center items-center min-h-screen bg-black p-2 py-4">
       <div className="p-8 rounded-xl bg-gray-800 w-full max-w-sm">
         <div className="space-y-6">
           {/* Each input field is accompanied by a label and it takes the user's input to update state */}
