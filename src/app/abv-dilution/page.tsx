@@ -3,52 +3,51 @@
 import { use, useEffect, useState } from "react";
 
 const Home: React.FC = () => {
-  const [abvInitial, setAbvInitial] = useState<number>(38);
-  const [volumeInitial, setVolumeInitial] = useState<number>(40);
-  const [abvLow, setAbvLow] = useState<number>(5);
-  const [abvTarget, setAbvTarget] = useState<number>(35);
+  const [abvInitial, setAbvInitial] = useState<string>("38");
+  const [volumeInitial, setVolumeInitial] = useState<string>("40");
+  const [abvLow, setAbvLow] = useState<string>("0");
+  const [abvTarget, setAbvTarget] = useState<string>("35");
   const [volumeNeeded, setVolumeNeeded] = useState<string>("");
   const [totalVolume, setTotalVolume] = useState<string>("");
 
   const calculateDilutionVolume = () => {
-    console.log(
-      `abvInitial: ${abvInitial}, volumeInitial: ${volumeInitial}, abvLow: ${abvLow}, abvTarget: ${abvTarget}`
-    );
+    const input = {
+      abvInitial: parseFloat(abvInitial),
+      volumeInitial: parseFloat(volumeInitial),
+      abvLow: parseFloat(abvLow),
+      abvTarget: parseFloat(abvTarget),
+    };
 
-    if (abvTarget >= abvInitial || abvTarget <= abvLow) {
+    if (input.abvTarget >= input.abvInitial || input.abvTarget <= input.abvLow) {
       setVolumeNeeded("Invalid ABV range");
       return;
     }
-    const result =
-      (abvInitial * volumeInitial - abvTarget * volumeInitial) /
-      (abvTarget - abvLow);
+
+    // check isnan
+    if (Object.values(input).some((value) => isNaN(value))) {
+      setVolumeNeeded("");
+      setTotalVolume("");
+      return;
+    }
+
+
+    const result = (input.abvInitial * input.volumeInitial - input.abvTarget * input.volumeInitial) / (input.abvTarget - input.abvLow);
+
     setVolumeNeeded(`${result.toFixed(2)}L`);
     setTotalVolume(`${volumeInitial + result.toFixed(2)}L`);
   };
-  // subscribe value then call calculateDilutionVolume
-  // This function is called whenever any input value changes
+
   useEffect(() => {
     console.log(`abvInitial: ${abvInitial}, volumeInitial: ${volumeInitial}, abvLow: ${abvLow}, abvTarget: ${abvTarget}`)
     calculateDilutionVolume();
   }, [abvInitial, volumeInitial, abvLow, abvTarget]);
 
   const handleInputChange =
-    (setter: (value: number) => void) =>
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (event.target.value === "") {
-        setter(0);
-        return;
-      }
-
-      const value = parseInt(event.target.value, 10);
-      console.log(value)
-      // event.preventDefault();
-      // event.stopPropagation();
-      if (!isNaN(value)) {
-        console.log(`set ${value}`)
+    (setter: (value: string) => void) =>
+      (event: React.ChangeEvent<HTMLInputElement>) => {
+        const value = event.target.value;
         setter(value);
-      }
-    };
+      };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-black p-2 py-4">
@@ -72,7 +71,7 @@ const Home: React.FC = () => {
             </label>
             <input
               type="number"
-              // pattern="[0-9]*"
+              pattern="[0-9]*"
               className="p-4 bg-gray-700 text-white rounded border border-gray-600 text-lg"
               value={volumeInitial}
               onChange={handleInputChange(setVolumeInitial)}
@@ -80,9 +79,9 @@ const Home: React.FC = () => {
             />
           </div>
           <div className="flex flex-col">
-            <label className="text-white mb-2 text-lg">Low ABV (%):</label>
+            <label className="text-white mb-2 text-lg">Water or Low ABV (%):</label>
             <input
-              // pattern="[0-9]*"
+              pattern="[0-9]*"
               type="number"
               className="p-4 bg-gray-700 text-white rounded border border-gray-600 text-lg"
               value={abvLow}
