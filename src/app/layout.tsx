@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en">
-         <body className={inter.className}>
+         <body className={`${inter.className} bg-grey`}>
         {/* provider is client component */}
           <Header />
             {children}
