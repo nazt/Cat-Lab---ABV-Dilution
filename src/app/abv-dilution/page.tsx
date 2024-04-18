@@ -2,10 +2,10 @@
 import { useState, FormEvent } from "react";
 
 const Home: React.FC = () => {
-  const [abvInitial, setAbvInitial] = useState<number>(12);
-  const [volumeInitial, setVolumeInitial] = useState<number>(5);
+  const [abvInitial, setAbvInitial] = useState<number>(38);
+  const [volumeInitial, setVolumeInitial] = useState<number>(40);
   const [abvLow, setAbvLow] = useState<number>(5);
-  const [abvTarget, setAbvTarget] = useState<number>(8);
+  const [abvTarget, setAbvTarget] = useState<number>(35);
   const [volumeNeeded, setVolumeNeeded] = useState<string>("");
 
   const calculateDilutionVolume = () => {
