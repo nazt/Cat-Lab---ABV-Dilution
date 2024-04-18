@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 
 const Home: React.FC = () => {
   const [abvInitial, setAbvInitial] = useState<number>(38);
@@ -25,12 +25,27 @@ const Home: React.FC = () => {
     setVolumeNeeded(`${result.toFixed(2)}L`);
     setTotalVolume(`${volumeInitial + result.toFixed(2)}L`);
   };
+  // subscribe value then call calculateDilutionVolume
+  // This function is called whenever any input value changes
+  useEffect(() => {
+    console.log(`abvInitial: ${abvInitial}, volumeInitial: ${volumeInitial}, abvLow: ${abvLow}, abvTarget: ${abvTarget}`)
+    calculateDilutionVolume();
+  }, [abvInitial, volumeInitial, abvLow, abvTarget]);
 
   const handleInputChange =
     (setter: (value: number) => void) =>
     (event: React.ChangeEvent<HTMLInputElement>) => {
+      if (event.target.value === "") {
+        setter(0);
+        return;
+      }
+
       const value = parseInt(event.target.value, 10);
+      console.log(value)
+      // event.preventDefault();
+      // event.stopPropagation();
       if (!isNaN(value)) {
+        console.log(`set ${value}`)
         setter(value);
       }
     };
@@ -43,6 +58,7 @@ const Home: React.FC = () => {
           <div className="flex flex-col">
             <label className="text-white mb-2 text-lg">Initial ABV (%):</label>
             <input
+              pattern="[0-9]*"
               type="number"
               className="p-4 bg-gray-700 text-white rounded border border-gray-600 text-lg"
               value={abvInitial}
@@ -56,6 +72,7 @@ const Home: React.FC = () => {
             </label>
             <input
               type="number"
+              // pattern="[0-9]*"
               className="p-4 bg-gray-700 text-white rounded border border-gray-600 text-lg"
               value={volumeInitial}
               onChange={handleInputChange(setVolumeInitial)}
@@ -65,6 +82,7 @@ const Home: React.FC = () => {
           <div className="flex flex-col">
             <label className="text-white mb-2 text-lg">Low ABV (%):</label>
             <input
+              // pattern="[0-9]*"
               type="number"
               className="p-4 bg-gray-700 text-white rounded border border-gray-600 text-lg"
               value={abvLow}
@@ -75,6 +93,7 @@ const Home: React.FC = () => {
           <div className="flex flex-col">
             <label className="text-white mb-2 text-lg">Target ABV (%):</label>
             <input
+              // pattern="[0-9]*"
               type="number"
               className="p-4 bg-gray-700 text-white rounded border border-gray-600 text-lg"
               value={abvTarget}
