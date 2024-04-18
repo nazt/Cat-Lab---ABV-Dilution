@@ -1,8 +1,7 @@
 import { redirect } from 'next/navigation';
 
 const Dilution: React.FC = () => { 
-    redirect('/home');
-    // return (<>Home</>)
+    redirect('/abv-dilution');
 };
 
 export default Dilution;
