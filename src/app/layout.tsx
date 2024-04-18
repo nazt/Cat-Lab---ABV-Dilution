@@ -18,9 +18,7 @@ export default function RootLayout({ children }: LayoutProps) {
          <body className={inter.className}>
         {/* provider is client component */}
           <Header />
-          <main className="h-[calc(100vh-theme(data.md-header-h)-theme(data.md-footer-h))] bg-dark-900 px-3">
             {children}
-          </main>
           <Footer />
       </body>
     </html>

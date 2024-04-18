@@ -1,5 +1,6 @@
 "use client";
-import { useState, FormEvent } from "react";
+
+import { useState } from "react";
 
 const Home: React.FC = () => {
   const [abvInitial, setAbvInitial] = useState<number>(38);
@@ -19,7 +20,6 @@ const Home: React.FC = () => {
     setVolumeNeeded(`${result.toFixed(2)}L`);
   };
 
-  // This function is called whenever any input value changes
   const handleInputChange =
     (setter: (value: number) => void) =>
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,58 +29,63 @@ const Home: React.FC = () => {
     };
 
   return (
-    <>
-      <div className="flex justify-center items-center h-screen bg-black">
-        <div className="p-8 rounded-xl bg-gray-800">
-          <div className="space-y-6">
-            <div className="flex flex-col">
-              <label className="text-white mb-2">Initial ABV (%):</label>
-              <input
-                type="number"
-                className="p-2 bg-gray-700 text-white rounded border border-gray-600"
-                value={abvInitial}
-                onChange={handleInputChange(setAbvInitial)}
-              />
-            </div>
-            <div className="flex flex-col">
-              <label className="text-white mb-2">
-                Initial Volume (liters):
-              </label>
-              <input
-                type="number"
-                className="p-2 bg-gray-700 text-white rounded border border-gray-600"
-                value={volumeInitial}
-                onChange={handleInputChange(setVolumeInitial)}
-              />
-            </div>
-            <div className="flex flex-col">
-              <label className="text-white mb-2">Low ABV (%):</label>
-              <input
-                type="number"
-                className="p-2 bg-gray-700 text-white rounded border border-gray-600"
-                value={abvLow}
-                onChange={handleInputChange(setAbvLow)}
-              />
-            </div>
-            <div className="flex flex-col">
-              <label className="text-white mb-2">Target ABV (%):</label>
-              <input
-                type="number"
-                className="p-2 bg-gray-700 text-white rounded border border-gray-600"
-                value={abvTarget}
-                onChange={handleInputChange(setAbvTarget)}
-              />
-            </div>
-            <div className="flex flex-col">
-              <label className="text-white mb-2">Volume needed (liters):</label>
-              <output className="p-2 bg-gray-700 text-white rounded border border-gray-600">
-                {volumeNeeded}
-              </output>
-            </div>
+    <div className="flex justify-center items-center min-h-screen bg-black">
+      <div className="p-8 rounded-xl bg-gray-800 w-full max-w-md">
+        <div className="space-y-6">
+          <div className="flex flex-col">
+            <label className="text-white mb-2 text-lg">Initial ABV (%):</label>
+            <input
+              type="number"
+              className="p-4 bg-gray-700 text-white rounded border border-gray-600 text-lg"
+              value={abvInitial}
+              onChange={handleInputChange(setAbvInitial)}
+              style={{ minHeight: '50px' }}
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-white mb-2 text-lg">
+              Initial Volume (liters):
+            </label>
+            <input
+              type="number"
+              className="p-4 bg-gray-700 text-white rounded border border-gray-600 text-lg"
+              value={volumeInitial}
+              onChange={handleInputChange(setVolumeInitial)}
+              style={{ minHeight: '50px' }}
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-white mb-2 text-lg">Low ABV (%):</label>
+            <input
+              type="number"
+              className="p-4 bg-gray-700 text-white rounded border border-gray-600 text-lg"
+              value={abvLow}
+              onChange={handleInputChange(setAbvLow)}
+              style={{ minHeight: '50px' }}
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-white mb-2 text-lg">Target ABV (%):</label>
+            <input
+              type="number"
+              className="p-4 bg-gray-700 text-white rounded border border-gray-600 text-lg"
+              value={abvTarget}
+              onChange={handleInputChange(setAbvTarget)}
+              style={{ minHeight: '50px' }}
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-white mb-2 text-lg">Volume needed (liters):</label>
+            <output
+              className="p-4 bg-gray-700 text-white rounded border border-gray-600 text-lg"
+              style={{ minHeight: '50px' }}
+            >
+              {volumeNeeded}
+            </output>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
