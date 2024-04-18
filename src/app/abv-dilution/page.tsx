@@ -30,7 +30,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-black">
-      <div className="p-8 rounded-xl bg-gray-800 w-full max-w-md">
+      <div className="p-8 rounded-xl bg-gray-800 w-full max-w-sm">
         <div className="space-y-6">
           <div className="flex flex-col">
             <label className="text-white mb-2 text-lg">Initial ABV (%):</label>
