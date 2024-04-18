@@ -8,8 +8,8 @@ const NavBar: React.FC = () => {
   const pathname = usePathname();
   const navigationLinks = [
     { href: "/", label: "Home" },
-    { href: "/abv-dilution", label: "ABV Dilution" },
-    { href: "/abv-calculator", label: "ABV Calculator" },
+    { href: "/abv-dilution", label: "ABV Dilution Calculator" },
+    { href: "/yeast-starter", label: "Yeast Calculator" },
   ];
   const isActive = (path: string): string => {
     return pathname === path ? 'bg-gray-900' : '';
@@ -20,17 +20,20 @@ const NavBar: React.FC = () => {
       <div className="flex items-center">
         {/* Logo placeholder */}
         <div className="h-8 w-8 bg-blue-500 mr-2 rounded-full flex justify-center items-center">
-          <span className="text-white font-semibold">L</span>
+          <span className="text-white font-semibold">C</span>
         </div>
-        <span className="text-white text-lg font-bold">ABV Tools</span>
+        <span className="text-white text-lg font-bold">Cat Lab System</span>
       </div>
       <div className="flex">
         {navigationLinks.map((link) => (
-          <Link key={link.href} href={link.href}>
-            <a className={`text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium ${isActive(link.href)}`}>
-              {link.label}
-            </a>
-          </Link>
+          (<Link
+            key={link.href}
+            href={link.href}
+            className={`text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium ${isActive(link.href)}`}>
+
+            {link.label}
+
+          </Link>)
         ))}
       </div>
     </nav>
