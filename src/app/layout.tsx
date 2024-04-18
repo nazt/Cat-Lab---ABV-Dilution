@@ -9,8 +9,8 @@ import NavBar from "../components/NavBar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Cat Lab ABV Dilution",
-  description: "powered by Cat Lab System",
+  title: "Cat Lab System",
+  description: "powered by Cat Lab",
 };
 export default function RootLayout({ children }: LayoutProps) {
   return (
