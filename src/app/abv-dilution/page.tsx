@@ -54,12 +54,12 @@ const Home: React.FC = () => {
       <div className="flex justify-center items-center min-h-screen bg-black p-2 py-4">
 
         <div className="p-8 rounded-xl bg-gray-800 w-full max-w-sm">
+          <h1 className="text-2xl text-white mb-6 text-center">
+            ABV Dilution Calculator
+          </h1>
           <div className="space-y-6">
             {/* Each input field is accompanied by a label and it takes the user's input to update state */}
             <div className="flex flex-col">
-      <div className="text-2xl text-white mb-6 text-center">
-        ABV Dilution Calculator
-      </div>
 
               <label className="text-white mb-2 text-lg">Initial ABV (%):</label>
               <input
