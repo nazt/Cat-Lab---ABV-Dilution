@@ -8,9 +8,12 @@ const Home: React.FC = () => {
   const [abvLow, setAbvLow] = useState<number>(5);
   const [abvTarget, setAbvTarget] = useState<number>(35);
   const [volumeNeeded, setVolumeNeeded] = useState<string>("");
+  const [totalVolume, setTotalVolume] = useState<string>("");
 
   const calculateDilutionVolume = () => {
-    console.log(`abvInitial: ${abvInitial}, volumeInitial: ${volumeInitial}, abvLow: ${abvLow}, abvTarget: ${abvTarget}`);
+    console.log(
+      `abvInitial: ${abvInitial}, volumeInitial: ${volumeInitial}, abvLow: ${abvLow}, abvTarget: ${abvTarget}`
+    );
 
     if (abvTarget >= abvInitial || abvTarget <= abvLow) {
       setVolumeNeeded("Invalid ABV range");
@@ -20,14 +23,17 @@ const Home: React.FC = () => {
       (abvInitial * volumeInitial - abvTarget * volumeInitial) /
       (abvTarget - abvLow);
     setVolumeNeeded(`${result.toFixed(2)}L`);
+    setTotalVolume(`${volumeInitial + result.toFixed(2)}L`);
   };
 
-  const handleInputChange = (setter: (value: number) => void) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(event.target.value, 10);
-    if (!isNaN(value)) {
-      setter(value);
-    }
-  };
+  const handleInputChange =
+    (setter: (value: number) => void) =>
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const value = parseInt(event.target.value, 10);
+      if (!isNaN(value)) {
+        setter(value);
+      }
+    };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-black">
@@ -41,7 +47,7 @@ const Home: React.FC = () => {
               className="p-4 bg-gray-700 text-white rounded border border-gray-600 text-lg"
               value={abvInitial}
               onChange={handleInputChange(setAbvInitial)}
-              style={{ minHeight: '50px' }}
+              style={{ minHeight: "50px" }}
             />
           </div>
           <div className="flex flex-col">
@@ -53,7 +59,7 @@ const Home: React.FC = () => {
               className="p-4 bg-gray-700 text-white rounded border border-gray-600 text-lg"
               value={volumeInitial}
               onChange={handleInputChange(setVolumeInitial)}
-              style={{ minHeight: '50px' }}
+              style={{ minHeight: "50px" }}
             />
           </div>
           <div className="flex flex-col">
@@ -63,7 +69,7 @@ const Home: React.FC = () => {
               className="p-4 bg-gray-700 text-white rounded border border-gray-600 text-lg"
               value={abvLow}
               onChange={handleInputChange(setAbvLow)}
-              style={{ minHeight: '50px' }}
+              style={{ minHeight: "50px" }}
             />
           </div>
           <div className="flex flex-col">
@@ -73,7 +79,7 @@ const Home: React.FC = () => {
               className="p-4 bg-gray-700 text-white rounded border border-gray-600 text-lg"
               value={abvTarget}
               onChange={handleInputChange(setAbvTarget)}
-              style={{ minHeight: '50px' }}
+              style={{ minHeight: "50px" }}
             />
           </div>
           <button
@@ -83,12 +89,25 @@ const Home: React.FC = () => {
             Calculate
           </button>
           <div className="flex flex-col">
-            <label className="text-white mb-2 text-lg">Volume needed (liters):</label>
+            <label className="text-white mb-2 text-lg">
+              Volume needed (liters):
+            </label>
             <output
               className="p-4 bg-gray-700 text-white rounded border border-gray-600 text-lg"
-              style={{ minHeight: '50px' }}
+              style={{ minHeight: "50px" }}
             >
               {volumeNeeded}
+            </output>
+          </div>
+          <div className="flex flex-col">
+            <label className="text-white mb-2 text-lg">
+              Total Volume (liters):
+            </label>
+            <output
+              className="p-4 bg-gray-700 text-white rounded border border-gray-600 text-lg"
+              style={{ minHeight: "50px" }}
+            >
+              {totalVolume}
             </output>
           </div>
         </div>
