@@ -92,7 +92,7 @@ const Home: React.FC = () => {
           <div className="flex flex-col">
             <label className="text-white mb-2 text-lg">Target ABV (%):</label>
             <input
-              // pattern="[0-9]*"
+              pattern="[0-9]*"
               type="number"
               className="p-4 bg-gray-700 text-white rounded border border-gray-600 text-lg"
               value={abvTarget}
