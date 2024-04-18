@@ -1,6 +1,5 @@
 "use client";
 import { useState, FormEvent } from "react";
-import NavBar from "./NavBar";
 
 const Home: React.FC = () => {
   const [abvInitial, setAbvInitial] = useState<number>(12);
@@ -31,7 +30,6 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <NavBar />
       <div className="flex justify-center items-center h-screen bg-black">
         <div className="p-8 rounded-xl bg-gray-800">
           <div className="space-y-6">
