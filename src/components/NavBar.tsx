@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
+import Image from 'next/image';
 
 const NavBar: React.FC = () => {
   const router = useRouter();
@@ -19,11 +20,18 @@ const NavBar: React.FC = () => {
     <nav className="bg-gray-800 p-4 flex justify-between items-center">
       <div className="flex items-center">
         {/* Logo placeholder */}
-        <div className="h-8 w-8 bg-blue-500 mr-2 rounded-full flex justify-center items-center">
+        <div className="h-8 w-8 mr-2 rounded-full flex justify-center items-center">
           <Link href="/">
-            <span className="text-white font-semibold">C</span>
+            {/* <span className="text-white font-semibold">C</span> */}
+            <Image
+              src="/logo1.png"
+              width={40}
+              height={40}
+              alt="Platform logo"
+            />
           </Link>
         </div>
+
         <span className="text-white text-lg font-bold">Cat Lab System</span>
       </div>
       <div className="flex">
