@@ -34,7 +34,7 @@ const Home: React.FC = () => {
     const result = (input.abvInitial * input.volumeInitial - input.abvTarget * input.volumeInitial) / (input.abvTarget - input.abvLow);
 
     setVolumeNeeded(`${result.toFixed(2)}L`);
-    setTotalVolume(`${volumeInitial + result.toFixed(2)}L`);
+    setTotalVolume(`${ (input.volumeInitial + result).toFixed(2)}L`);
   };
 
   useEffect(() => {
