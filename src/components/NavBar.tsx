@@ -34,7 +34,10 @@ const NavBar: React.FC = () => {
           </Link>
         </div>
 
-        <span className="text-white text-lg font-bold">Cat Lab System</span>
+        <Link href="/">
+          <span className="text-white text-lg font-bold">Cat Lab System</span>
+        </Link>
+
       </div>
       <div className="flex">
         {navigationLinks.map((link) => (
