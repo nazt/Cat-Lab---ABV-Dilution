@@ -12,6 +12,7 @@ const NavBar: React.FC = () => {
     { href: "/abv-dilution", label: "ABV Dilution Calculator" },
     { href: "/dme", label: "DME Calculator" },
     { href: "/yeast", label: "Yeast Starter Calculator" },
+    { href: "/about", label: "About" },
   ];
   const isActive = (path: string): string => {
     return pathname === path ? "bg-gray-900" : "";
